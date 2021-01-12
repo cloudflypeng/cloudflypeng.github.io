@@ -104,5 +104,5 @@ theme: cards
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
     type: git
-    repo: https://github.com/cloudflypeng/softfly.git
+    repo: https://github.com/cloudflypeng/cloudflypeng.github.io.git
     branch: blog
