@@ -105,4 +105,4 @@ theme: cards
 deploy:
     type: git
     repo: https://github.com/cloudflypeng/softfly.git
-    branch: master
+    branch: blog
