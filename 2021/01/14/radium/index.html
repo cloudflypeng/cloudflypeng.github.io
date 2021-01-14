@@ -19,7 +19,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>Hello World - Hexo</title>
+  <title>radium的一点结构 - Hexo</title>
   
 
   
@@ -391,7 +391,7 @@
     
     
       <h1 class="title">
-        Hello World
+        radium的一点结构
       </h1>
       <div class='new-meta-box'>
         
@@ -415,7 +415,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：Jan 13, 2021</p>
+    <p>发布于：Jan 14, 2021</p>
   </a>
 </div>
 
@@ -426,7 +426,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="Hello World" data-path="/2021/01/13/hello-world/">
+      <div id="lc-pv" data-title="radium的一点结构" data-path="/2021/01/14/radium/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -443,15 +443,12 @@
 
 
   
-  <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+  <h1 id="radium"><a href="#radium" class="headerlink" title="radium"></a>radium</h1><h2 id="StyleRoot"><a href="#StyleRoot" class="headerlink" title="StyleRoot"></a>StyleRoot</h2><p>通过StyleKeeper将功能组织起来</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> StyleRoot = <span class="function">(<span class="params">props: StyleRootProps</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">/* eslint-disable no-unused-vars */</span></span><br><span class="line">  <span class="comment">// Pass down all props except config to the rendered div.</span></span><br><span class="line">  <span class="comment">/* eslint-enable no-unused-vars */</span></span><br><span class="line">  <span class="keyword">const</span> &#123;radiumConfig&#125; = props;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> configContext = useContext(RadiumConfigContext);</span><br><span class="line">  <span class="keyword">const</span> styleKeeper = useRef&lt;StyleKeeper&gt;(</span><br><span class="line">    getStyleKeeper(radiumConfig, configContext)</span><br><span class="line">  );<span class="comment">//获取一个保存css的对象.用于注入样式使用订阅-发布模式</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;StyleKeeperContext.Provider value=&#123;styleKeeper.current&#125;&gt;</span><br><span class="line">      &lt;StyleRootInner &#123;...props&#125; /&gt;</span><br><span class="line">    &lt;/StyleKeeperContext.Provider&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> StyleRootInner = Enhancer(<span class="function">(<span class="params">&#123;children, ...otherProps&#125;: StyleRootProps</span>) =&gt;</span> (</span><br><span class="line">  &lt;div &#123;...otherProps&#125;&gt;</span><br><span class="line">    &#123;children&#125;</span><br><span class="line">    &lt;StyleSheet /&gt;<span class="comment">//生成的样式表</span></span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">));</span><br></pre></td></tr></table></figure>
+<h3 id="StyleKeeperContext"><a href="#StyleKeeperContext" class="headerlink" title="StyleKeeperContext"></a>StyleKeeperContext</h3><p>最外层包裹的上下文,</p>
+<p>radium的函数需要用styleRoot包裹,他会接受两个参数,子节点和配置项.</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> StyleRootProps = &#123;</span><br><span class="line">  radiumConfig: Config,</span><br><span class="line">  children: Node</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">type</span> Config = &#123;</span><br><span class="line">  matchMedia?: MatchMediaType,</span><br><span class="line">  plugins?: <span class="built_in">Array</span>&lt;Plugin&gt;,<span class="comment">//插件</span></span><br><span class="line">  userAgent?: <span class="built_in">string</span><span class="comment">//在getStyleKeeper是会进行绑定</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="StyleSheet"><a href="#StyleSheet" class="headerlink" title="StyleSheet"></a>StyleSheet</h2><p>StyleRootInner中的核心部分,返回一个对应的样式表,采用发布订阅模式,某些情况下回更新自己的内容</p>
 
   
   
@@ -469,7 +466,7 @@
               
             
               
-                <p>本文永久链接是：<a href=http://example.com/2021/01/13/hello-world/>http://example.com/2021/01/13/hello-world/</a></p>
+                <p>本文永久链接是：<a href=http://example.com/2021/01/14/radium/>http://example.com/2021/01/14/radium/</a></p>
               
             
           </blockquote>
@@ -486,10 +483,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-13T10:16:27+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-01-14T11:26:15+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：Jan 13, 2021</p>
+    <p>更新于：Jan 14, 2021</p>
   </a>
 </div>
 
@@ -508,7 +505,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/01/13/hello-world/&title=Hello World - Hexo&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://example.com/2021/01/14/radium/&title=radium的一点结构 - Hexo&summary="
           
           >
           
@@ -520,7 +517,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/01/13/hello-world/&title=Hello World - Hexo&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://example.com/2021/01/14/radium/&title=radium的一点结构 - Hexo&summary="
           
           >
           
@@ -532,7 +529,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/01/13/hello-world/&title=Hello World - Hexo&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://example.com/2021/01/14/radium/&title=radium的一点结构 - Hexo&summary="
           
           >
           
@@ -562,12 +559,11 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2021/01/14/radium/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>radium的一点结构</p>
-          <p class='content'>radiumStyleRoot通过StyleKeeper将功能组织起来
-1234567891011121314151617181920212223const StyleRoot = (props...</p>
-        </a>
       
+        <a class='next' href='/2021/01/13/hello-world/'>
+          <p class='title'>Hello World<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any ...</p>
+        </a>
       
     </div>
   
@@ -609,7 +605,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#StyleRoot"><span class="toc-text">StyleRoot</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#StyleKeeperContext"><span class="toc-text">StyleKeeperContext</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#StyleSheet"><span class="toc-text">StyleSheet</span></a></li></ol>
     </div>
   </section>
 
@@ -629,7 +625,7 @@
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="Hello World";
+  pdata.postTitle="radium的一点结构";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
